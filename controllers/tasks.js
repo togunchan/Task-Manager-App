@@ -1,15 +1,18 @@
-const { create, update } = require("lodash")
+const Task = require('../models/task')
 
 const getAllTasks = (req, res) => {
+    console.log('I am getting all tasks...')
     res.send('Get All Tasks')
 }
 
-const createTask = (req, res) => {
-    res.send('Create Task')
+const createTask = async (req, res) => {
+    const task = await Task.create(req.body)
+    console.log(task)
+    res.status(201).json({ task })
 }
 
 const getTask = (req, res) => {
-    res.send('Get Single Task')
+    res.json({ id: req.params })
 }
 
 const updateTask = (req, res) => {
